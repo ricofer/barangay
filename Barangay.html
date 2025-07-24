@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Barangay Web Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .section {
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Registration Page -->
+  <div class="container" id="registerPage">
+    <h2>Create Account</h2>
+    <input type="text" id="regUsername" placeholder="Enter Username" />
+    <input type="password" id="regPassword" placeholder="Create Password" />
+    <button onclick="register()">Register</button>
+  </div>
+
+  <!-- Login Page -->
+  <div class="container hidden" id="loginPage">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="login()">Log In</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="container hidden" id="dashboardPage">
+    <h2>Welcome to Barangay System</h2>
+
+    <div class="section">
+      <h3>🏡 Resident Information</h3>
+      <ul>
+        <li>Juan Dela Cruz - Purok 1</li>
+        <li>Maria Santos - Purok 3</li>
+        <li>Carlos Reyes - Purok 5</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📝 Blotter Reports</h3>
+      <ul>
+        <li>Noise Complaint - July 1, 2025</li>
+        <li>Lost Item - July 10, 2025</li>
+        <li>Vandalism - July 15, 2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let savedUsername = "";
+    let savedPassword = "";
+
+    function register() {
+      const username = document.getElementById("regUsername").value;
+      const password = document.getElementById("regPassword").value;
+
+      if (username === "" || password === "") {
+        alert("Please fill out both fields.");
+        return;
+      }
+
+      savedUsername = username;
+      savedPassword = password;
+
+      alert("Registration successful! Please log in.");
+
+      document.getElementById("registerPage").classList.add("hidden");
+      document.getElementById("loginPage").classList.remove("hidden");
+    }
+
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      if (username === savedUsername && password === savedPassword) {
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("dashboardPage").classList.remove("hidden");
+      } else {
+        alert("Incorrect username or password.");
+      }
+    }
+  </script>
+
+</body>
+</html>
